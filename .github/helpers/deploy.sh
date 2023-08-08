@@ -2,7 +2,7 @@
 
 # script to process either the DPIA app or api deployment config templates and deploy it to a given namespace
 
-oc process -f /home/runner/work/citz-imb-shr-hackathon-team-bechamel/citz-imb-shr-hackathon-team-bechamel/openshift/templates/api/$DC_TEMPLATE --namespace=$NAMESPACE \
+oc process -f /home/runner/work/citz-imb-shr-hackathon-team-bechamel/citz-imb-shr-hackathon-team-bechamel/openshift/templates/$DIR/$DC_TEMPLATE --namespace=$NAMESPACE \
     -p APPLICATION_NAME=$APPLICATION_NAME \
     -p LICENSE_PLATE=$LICENSE_PLATE \
     -p IMAGESTREAM=$IMAGESTREAM \
