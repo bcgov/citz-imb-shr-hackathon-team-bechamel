@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  #############################################################################################
+  ###                                         API                                           ###
+  #############################################################################################
+  bechamel-api:
+    container_name: bechamel-api
+    build:
+      context: ./src/backend
+      dockerfile: .docker/Dockerfile
+    volumes:
+    networks:
+      - bechamel-network
+    ports:
+  
+  #############################################################################################
+  ###                                       Frontend                                        ###
+  #############################################################################################
+  bechamel-webapp:
+    container_name: bechamel-webapp
+    build:
+      context: ./src/frontend
+      dockerfile: .docker/Dockerfile
+    networks:
+      - bechamel-network
+    ports:
+  
+networks:
+  bechamel-network: 
+    driver: "bridge"
