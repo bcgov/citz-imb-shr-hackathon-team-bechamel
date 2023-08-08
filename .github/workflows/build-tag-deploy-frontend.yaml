@@ -1,0 +1,18 @@
+name: Build Bechamel Frontend
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - TBD - August 16
+  workflow_dispatch:
+  
+jobs:
+
+  Bechamel-Frontend-Build-Tag-Push:
+
+  Bechamel-Frontend-Deploy:
+
+  Bechamel-Frontend-Healthcheck:
+
+  Bechamel-Frontend-Success-Notify:
