@@ -1,0 +1,18 @@
+name: Build Bechamel API
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - TBD - August 16
+  workflow_dispatch:
+  
+jobs:
+
+  Bechamel-API-Build-Tag-Push:
+
+  Bechamel-API-Deploy:
+
+  Bechamel-API-Healthcheck:
+
+  Bechamel-API-Success-Notify:
