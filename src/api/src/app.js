@@ -25,7 +25,9 @@ app.use('/', root)
 //Routes
 app.get('/api/data', controller.getData)
 app.post('/api/data', controller.postData)
-app.get('/api/data/:searchCategory/:searchFilter', controller.filterData)
+app.get('/api/data/filter', controller.getFilteredData)
+app.get('/api/data/filter/:positionTitle', controller.getFilteredData)
+app.get('/api/data/:searchCategory/:searchFilter', controller.filterDataByParam)
 
 // Apply error handling last
 app.use(fourOhFour)
