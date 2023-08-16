@@ -26,7 +26,7 @@ app.use('/', root)
 app.get('/api/data', controller.getData)
 app.post('/api/data', controller.postData)
 app.get('/api/data/filter', controller.getFilteredData)
-app.get('/api/data/filter/:positionTitle', controller.getFilteredData)
+app.get('/api/data/filter/:positionTitle/:bandNumber', controller.getFilteredData)
 app.get('/api/data/:searchCategory/:searchFilter', controller.filterDataByParam)
 
 // Apply error handling last

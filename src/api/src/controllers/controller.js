@@ -35,6 +35,7 @@ const filterDataByParam = (req, res) => {
 
 const getFilteredData = (req, res) => {
     const positionTitle = req.params.positionTitle || 'analyst'
+    const bandNumber = req.params.bandNumber || 'band 1'
 
     const filterData = (searchCategory, searchFilter, data) => {
         const response = []
@@ -47,7 +48,7 @@ const getFilteredData = (req, res) => {
     }
 
     const firstFilter = filterData('position.title', positionTitle, data)
-    const secondFilter = filterData('position.classification', 'band', firstFilter)
+    const secondFilter = filterData('position.classification', bandNumber, firstFilter)
 
     let response = secondFilter
 
