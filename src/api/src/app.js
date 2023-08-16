@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(cors({
     origin: config.clientOrigins[config.nodeEnv]
 }))
-app.use(helmet())
+// app.use(helmet())
 app.use(morgan('tiny'))
 
 // Apply routes before error handling
