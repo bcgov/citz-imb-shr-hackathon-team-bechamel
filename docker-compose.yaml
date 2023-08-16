@@ -28,3 +28,16 @@ services:
 networks:
   bechamel-network: 
     driver: "bridge"
+
+## docker run -d -p 45432:5432 --name team-db -e POSTGRES_PASSWORD=postgres postgres
+  postgres:
+    container_name: team-db
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=team-db
+    ports:
+      - 45432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
