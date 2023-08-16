@@ -34,7 +34,7 @@ const filterDataByParam = (req, res) => {
 }
 
 const getFilteredData = (req, res) => {
-    let positionTitle = req.params.positionTitle || 'analyst'
+    const positionTitle = req.params.positionTitle || 'analyst'
 
     const filterData = (searchCategory, searchFilter, data) => {
         const response = []
@@ -46,10 +46,12 @@ const getFilteredData = (req, res) => {
         return response
     }
 
-    let firstFilter = filterData('position.title', positionTitle, data)
-    let secondFilter = filterData('position.classification', 'band', firstFilter)
+    const firstFilter = filterData('position.title', positionTitle, data)
+    const secondFilter = filterData('position.classification', 'band', firstFilter)
 
-    res.send(secondFilter)
+    let response = secondFilter
+
+    res.send(response)
 }
 
 const controller = {
