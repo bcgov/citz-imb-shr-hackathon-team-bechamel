@@ -18,6 +18,7 @@ function Dashboard() {
   const [searchPosition, setSearchPosition] = useState('');
   const [searchClassification, setSearchClassification] = useState('');
   const [searchOrganization, setSearchOrganization] = useState('');
+  const [revealMeme, setRevealMeme] = useState(false)
 
 
   const createColumns = () => {
@@ -116,7 +117,7 @@ function Dashboard() {
         <TextField id="outlined-basic" label="Search by classification" variant="outlined" value={searchClassification} onChange={e => setSearchClassification(e.target.value)} />
         <TextField id="outlined-basic" label="Search by organization" variant="outlined" value={searchOrganization} onChange={e => setSearchOrganization(e.target.value)} />
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-        <AverageSalary filteredData={data} title={'Organization'} />
+        <AverageSalary filteredData={data} title={'Organization Comparible Position  Salaries'} />
         <AverageSalary filteredData={positionAndClassificationData} title={'BCPS-wide Position & Classification'} />
         </div>
         <div style={{ height: 600, width: '100%' }}>
@@ -132,8 +133,20 @@ function Dashboard() {
           // checkboxSelection
           />
         </div>
+        <br/>
+        <h3>Based on this information, SHR recommends a salary of:  </h3>
+        <TextField id="outlined-basic" label="Recomended Salary" variant="standard"  />
+       <br/>
+       <br/>
         <Button href="/">Go Home</Button>
       </div>
+      <div style={{padding: '5px'}}>
+       
+        {revealMeme ? 
+        <img src={'https://i.imgflip.com/1jwfc9.jpg'} />
+       :  <button onClick={() => setRevealMeme(true)}>Reveal Meme</button>}
+      </div>
+      <br/>
     </>
   )
 }
