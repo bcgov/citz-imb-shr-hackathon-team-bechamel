@@ -2,15 +2,19 @@ import { useState, useEffect } from 'react'
 import '../App.css'
 import Button from '@mui/material/Button';
 import { DataGrid} from '@mui/x-data-grid';
+import TextField from '@mui/material/TextField';
 import Form from '../components/Form';
 
 
 
 function Dashboard () {
     const [org, setOrg] = useState("");
+    const [rawData, setRawData] = useState({});
     const [data, setData] = useState({});
     const [fields, setFields] = useState([])
     const [rowsData, setRowsData] = useState([]);
+    const [searchPosition, setSearchPosition] = useState('');
+    const [searchClassification, setSearchClassification] = useState('');
     
     
     const createColumns = () => {
@@ -47,26 +51,45 @@ function Dashboard () {
         }
         setRowsData(fieldsLocal)
       }
+
+      const filterData = (searchCategory, searchFilter, data) => {
+        const response = []
+        for (let item of data) {
+            if (item && Object.keys(item).includes(searchCategory) && item[searchCategory].toLowerCase().includes(searchFilter.toLowerCase())) {
+                response.push(item)
+            }
+        }
+        return response
+    }
+
     async function setAPIData() {
       const data = await fetch("http://localhost:3000/api/data")
-      const info = await data.json()
+      const tempInfo = await data.json()
+      const info = await tempInfo;
+      setRawData(info);
       //setOrg(await info[1])
-      setData(await info);
+      setData(info);
         //console.log(Object.keys(info[0]));
         setOrg(Object.keys(info[0]))
 
     }
   
+    useEffect(() => {
+      if (Object.keys(rawData).length > 0) {
+        console.log('filtering..', searchClassification)
+        const firstFilter = filterData('position.title', searchPosition, rawData)
+        const secondFilter = filterData('position.classification', searchClassification, firstFilter)
+        setData(secondFilter);
+      }
+    }, [searchPosition, searchClassification])
+
     useEffect(()=>{
         createColumns()
-        
-    }, [org])
+    }, [org, searchPosition, searchClassification, data])
   // console.log(dataI)
+  
   useEffect(()=> {
     setAPIData();
-
-
-
   },[]);
   
  
@@ -80,6 +103,8 @@ function Dashboard () {
         <h1>Hello World</h1>
         <h2>SHR Dashboard</h2>
         <Form/>
+        <TextField id="outlined-basic" label="Search by position" variant="outlined" value={searchPosition} onChange={e => setSearchPosition(e.target.value)} />
+        <TextField id="outlined-basic" label="Search by classification" variant="outlined" value={searchClassification} onChange={e => setSearchClassification(e.target.value)} />
         <div style={{ height: 600, width: '100%' }}>
       <DataGrid
         rows={rowsData}
