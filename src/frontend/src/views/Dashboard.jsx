@@ -10,11 +10,14 @@ import AverageSalary from '../components/AverageSalary';
 function Dashboard() {
   const [org, setOrg] = useState("");
   const [rawData, setRawData] = useState({});
+  const [positionAndClassificationData, setPositionAndClassificationData] = useState({});
+  const [organizationFilteredData, setOrganizationFilteredData] = useState({});
   const [data, setData] = useState({});
   const [fields, setFields] = useState([])
   const [rowsData, setRowsData] = useState([]);
   const [searchPosition, setSearchPosition] = useState('');
   const [searchClassification, setSearchClassification] = useState('');
+  const [searchOrganization, setSearchOrganization] = useState('');
 
 
   const createColumns = () => {
@@ -69,6 +72,7 @@ function Dashboard() {
     setRawData(info);
     //setOrg(await info[1])
     setData(info);
+    setPositionAndClassificationData(info)
     //console.log(Object.keys(info[0]));
     setOrg(Object.keys(info[0]))
 
@@ -78,20 +82,27 @@ function Dashboard() {
     if (Object.keys(rawData).length > 0) {
       const firstFilter = filterData('position.title', searchPosition, rawData)
       const secondFilter = filterData('position.classification', searchClassification, firstFilter)
-      setData(secondFilter);
+      const thirdFilter = filterData('organization', searchOrganization, secondFilter)
+
+      const positionOnly = filterData('position.classification', searchClassification, rawData)
+      setPositionAndClassificationData(secondFilter)
+      setData(thirdFilter);
+
+      const organizationFilteredData = filterData('organization', searchOrganization, secondFilter)
+      setOrganizationFilteredData(organizationFilteredData)
+      console.log('data: ', firstFilter)
+      console.log('position data: ', positionOnly)
     }
-  }, [searchPosition, searchClassification])
+  }, [searchPosition, searchClassification, searchOrganization])
 
   useEffect(() => {
     createColumns()
-  }, [org, searchPosition, searchClassification, data])
+  }, [org, searchPosition, searchClassification, searchOrganization, data])
   // console.log(dataI)
 
   useEffect(() => {
     setAPIData();
   }, []);
-
-  console.log(data)
 
 
 
@@ -103,7 +114,11 @@ function Dashboard() {
         <Form />
         <TextField id="outlined-basic" label="Search by position" variant="outlined" value={searchPosition} onChange={e => setSearchPosition(e.target.value)} />
         <TextField id="outlined-basic" label="Search by classification" variant="outlined" value={searchClassification} onChange={e => setSearchClassification(e.target.value)} />
-        <AverageSalary filteredData={data} />
+        <TextField id="outlined-basic" label="Search by organization" variant="outlined" value={searchOrganization} onChange={e => setSearchOrganization(e.target.value)} />
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+        <AverageSalary filteredData={data} title={'Organization'} />
+        <AverageSalary filteredData={positionAndClassificationData} title={'BCPS-wide Position & Classification'} />
+        </div>
         <div style={{ height: 600, width: '100%' }}>
           <DataGrid
             rows={rowsData}
