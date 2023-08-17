@@ -5,11 +5,16 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
+
 import Checkbox from '@mui/material/Checkbox';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Box from '@mui/material/Box';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
+import FormLabel from '@mui/material/FormLabel';
 
 function Form() {
     const [app, setApp] = useState('');
@@ -77,20 +82,22 @@ function Form() {
 
         alignItems="center"
         justifyContent="center">
-      <List sx={{ width: '80%', maxWidth: 700, bgcolor: 'background.paper', justify:"center" }}>
-      <ListItem>
-      <FormControlLabel control={<Checkbox />} label="1: Minimal education and expirience related to area of work" />
-      </ListItem>
-      <ListItem>
-      <FormControlLabel control={<Checkbox />} label="2: Limited education and expirience related to area of work" />
-      </ListItem>
-      <ListItem>
-      <FormControlLabel control={<Checkbox />} label="3: multiple years of education and expirience related to area of work" />
-      </ListItem>
-      <ListItem>
-      <FormControlLabel control={<Checkbox />} label="4: Senior level education and expirience and high preformance related to work area" />
-      </ListItem>
-      </List>
+<FormControl>
+      <FormLabel id="demo-radio-buttons-group-label"></FormLabel>
+      <RadioGroup
+        aria-labelledby="demo-radio-buttons-group-label"
+        defaultValue="female"
+        name="radio-buttons-group"
+      >
+      <FormControlLabel control={<Radio />} value={1} label="1: Minimal education and expirience related to area of work" />
+
+      <FormControlLabel control={<Radio />} value={2} label="2: Limited education and expirience related to area of work" />
+
+      <FormControlLabel control={<Radio />} value={3} label="3: multiple years of education and expirience related to area of work" />
+
+      <FormControlLabel control={<Radio />} value={4} label="4: Senior level education and expirience and high preformance related to work area" />
+      </RadioGroup>
+   </FormControl>
       </Box>
       
       <h4>Comments</h4>
