@@ -24,13 +24,96 @@ function Dashboard() {
     let fields = [];
     for (let i = 0; i < org.length; i++) {
       let obj = {}
-      obj.field = org[i]
-      obj.headerName = org[i]
-      obj.width = 130
-      fields.push(obj);
+
+      if (org[i] === "organization") {
+        obj.field = org[i]
+        obj.headerName = org[i]
+        obj.width = 130
+        fields.push(obj);
+      }
+
+      if (org[i] === "program") {
+        obj.field = org[i]
+        obj.headerName = org[i]
+        obj.width = 130
+        fields.push(obj);
+      }
+
+      if (org[i] === "programDivision") {
+        obj.field = org[i]
+        obj.headerName = org[i]
+        obj.width = 130
+        fields.push(obj);
+      }
+
+      if (org[i] === "programBranch") {
+        obj.field = org[i]
+        obj.headerName = org[i]
+        obj.width = 130
+        fields.push(obj);
+      }
+
+      if (org[i] === "businessUnit.name") {
+        obj.field = org[i]
+        obj.headerName = org[i]
+        obj.width = 130
+        fields.push(obj);
+      }
+
+      if (org[i] === "department.id") {
+        obj.field = org[i]
+        obj.headerName = org[i]
+        obj.width = 130
+        fields.push(obj);
+      }
+
+      if (org[i] === "department.name") {
+        obj.field = org[i]
+        obj.headerName = org[i]
+        obj.width = 130
+        fields.push(obj);
+      }
+
+      if (org[i] === "position.title") {
+        obj.field = org[i]
+        obj.headerName = org[i]
+        obj.width = 130
+        fields.push(obj);
+      }
+
+      if (org[i] === "position.id") {
+        obj.field = org[i]
+        obj.headerName = org[i]
+        obj.width = 130
+        fields.push(obj);
+      }
+
+      if (org[i] === "position.classification") {
+        obj.field = org[i]
+        obj.headerName = org[i]
+        obj.width = 130
+        fields.push(obj);
+      }
+
+      
+      if (org[i] === "salary.positionJobcodeMaxAnnualRate") {
+        obj.field = org[i]
+        obj.headerName = org[i]
+        obj.width = 130
+        fields.push(obj);
+      }
+
+
+      if (org[i] === "salary.salaryAdminPlan") {
+        obj.field = org[i]
+        obj.headerName = org[i]
+        obj.width = 130
+        fields.push(obj);
+      }
+
 
     }
-    //console.log(fields)
+    console.log(fields)
     setFields(fields)
 
     createRows(fields)
@@ -116,8 +199,8 @@ function Dashboard() {
         <TextField id="outlined-basic" label="Search by classification" variant="outlined" value={searchClassification} onChange={e => setSearchClassification(e.target.value)} />
         <TextField id="outlined-basic" label="Search by organization" variant="outlined" value={searchOrganization} onChange={e => setSearchOrganization(e.target.value)} />
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-        <AverageSalary filteredData={data} title={'Organization'} />
-        <AverageSalary filteredData={positionAndClassificationData} title={'BCPS-wide Position & Classification'} />
+        <AverageSalary filteredData={data} title={'Organization Position Salaries'} />
+        <AverageSalary filteredData={positionAndClassificationData} title={'BCPS Position Salaries'} />
         </div>
         <div style={{ height: 600, width: '100%' }}>
           <DataGrid
