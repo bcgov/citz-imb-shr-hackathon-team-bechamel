@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 import { DataGrid } from '@mui/x-data-grid';
 import TextField from '@mui/material/TextField';
 import Form from '../components/Form';
+import AverageSalary from '../components/AverageSalary';
 import GraphIndex from '../components/BarGraph/Index';
-
 
 
 function Dashboard() {
@@ -77,7 +77,6 @@ function Dashboard() {
 
   useEffect(() => {
     if (Object.keys(rawData).length > 0) {
-      console.log('filtering..', searchClassification)
       const firstFilter = filterData('position.title', searchPosition, rawData)
       const secondFilter = filterData('position.classification', searchClassification, firstFilter)
       setData(secondFilter);
@@ -105,6 +104,7 @@ function Dashboard() {
         <Form />
         <TextField id="outlined-basic" label="Search by position" variant="outlined" value={searchPosition} onChange={e => setSearchPosition(e.target.value)} />
         <TextField id="outlined-basic" label="Search by classification" variant="outlined" value={searchClassification} onChange={e => setSearchClassification(e.target.value)} />
+        <AverageSalary filteredData={data} />
         <div style={{ height: 600, width: '100%' }}>
           <DataGrid
             rows={rowsData}
