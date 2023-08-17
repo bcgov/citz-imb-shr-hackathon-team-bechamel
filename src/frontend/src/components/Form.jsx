@@ -9,7 +9,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import Box from '@mui/material/Box';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import FormLabel from '@mui/material/FormLabel';
 
 function Form() {
@@ -25,6 +25,7 @@ function Form() {
       const handleBandChange = (event) => {
         setBand(event.target.value);
       };
+      const longText = "Education and expirience is calculated on a 1 - 4 scale based on the level of education and expirience directly related to the position. A score of 1 means they have minimal relating expirience and a score of 4 is amazing"
       
   return (
     <>
@@ -71,7 +72,9 @@ function Form() {
           <MenuItem value={6}>Band 6</MenuItem>
         </Select>
       </FormControl>
+      <Tooltip title={longText}>
       <h4>Education  and Expirience Level:</h4>
+      </Tooltip>
       <Box display="flex" 
         width={1250} 
 
