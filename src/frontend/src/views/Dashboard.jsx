@@ -108,6 +108,7 @@ function Dashboard() {
 
   return (
     <>
+    <br/>
       <div>
         <h2>SHR Dashboard</h2>
         <Form />
