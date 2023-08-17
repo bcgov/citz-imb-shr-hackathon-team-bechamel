@@ -2,12 +2,12 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider = prisma-client-js
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = "postgresql://postgres:postgres@localhost:45432/team-db?schema=public"
+  provider = postgresql
+  url      = postgresql://postgres:postgres@localhost:45432/team-db?schema=public
 }
 
 model User {
@@ -16,4 +16,142 @@ model User {
   email String @unique
   firstname String
   lastname String
+}
+
+model Applicant {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email String @unique
+  firstname String
+  lastname String
+}
+
+model JobRecord {
+  id       Int      @id @default(autoincrement())
+  name     String
+  organization String
+  program String
+  programDivision String
+  programBranch String
+  businessUnittag String
+  businessUnitname String
+  departmentid String
+  departmentname String
+  positionjobCode String
+  positiontitle String
+  positionid String
+  positionclassification String
+  directReports String
+  indirectReports Int
+  city String
+  positionStatus String
+  regTemp String
+  fullOrPartTime String
+  budgetedPosition String
+  supervisorposition String
+  supervisorname String
+  empty String
+  vacant String
+  trueVacancy String
+  futureVacancy String
+  monthsLastFilled Int
+  lastFilledByBaseIncumbent String
+  monthsLastFilledByBaseIncumbent Int
+  employee String
+  type String
+  salarypositionJobcodeMaxAnnualRate Int
+  salaryemployeeJobcodeMaxAnnualRate Int
+  salaryannualRate Int
+  salaryabbr Int
+  salarysalaryAdminPlan String
+  ama String
+  amaLimitDate String
+  cad String
+  cadLimitDate String
+  spp String
+  sppLimitDate String
+  taj String
+  tajLimitDate String
+  futureTerminationdate DateTime
+  futureTerminationreason String
+  temporaryAssignment Boolean
+  leave DateTime
+  hrForm HiringManagerForm  @relation(fields: [applicantId], references: [id])
+}
+
+model HiringManagerForm {
+  applicant   Applicant    @relation(fields: [applicantId], references: [id])
+
+}
+
+model Organization {
+  id       Int      @id @default(autoincrement())
+  name     String
+  programs Program[]
+}
+
+model Program {
+  id             Int        @id @default(autoincrement())
+  name           String
+  programDivision String
+  programBranch  String?
+  businessUnits  BusinessUnit[]
+  departments    Department[]
+}
+
+model BusinessUnit {
+  id        Int      @id @default(autoincrement())
+  tag       String
+  name      String
+  program   Program  @relation(fields: [programId], references: [id])
+  programId Int
+}
+
+model Department {
+  id         Int       @id @default(autoincrement())
+  departmentId String
+  name        String
+  program     Program   @relation(fields: [programId], references: [id])
+  programId   Int
+}
+
+model Position {
+  id                        Int      @id @default(autoincrement())
+  jobCode                   String
+  title                     String
+  classification           String
+  directReports             String?
+  indirectReports           Int
+  city                      String
+  status                    String
+  regTemp                   String
+  fullOrPartTime            String
+  budgetedPosition          String
+  supervisorPosition        String
+  supervisorName            String
+  empty                     String
+  vacant                    String
+  trueVacancy               String?
+  futureVacancy             String?
+  monthsLastFilled          Int
+  lastFilledByBaseIncumbent String
+  monthsLastFilledByBaseIncumbent Int
+  employee                  String
+  type                      String
+  futureTerminationDate     DateTime
+  futureTerminationReason   String
+  temporaryAssignment       String
+  leave                     String
+  salaries                  Salary[]
+}
+
+model Salary {
+  id                   Int      @id @default(autoincrement())
+  positionJobcodeMaxAnnualRate Int
+  employeeJobcodeMaxAnnualRate Int
+  annualRate           Int
+  abbr                 Int
+  salaryAdminPlan      String
+  position              Position @relation(fields: [positionId], references: [id])
+  positionId            Int
 }
