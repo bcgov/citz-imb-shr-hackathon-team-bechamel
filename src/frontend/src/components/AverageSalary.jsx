@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import GraphIndex from './BarGraph/Index';
-function AverageSalary({ filteredData }) {
+function AverageSalary({ filteredData, title }) {
     if (!filteredData) return <div>Loading</div>
     const [averageSalary, setAverageSalary] = useState('')
-    const [minimumSalary, setMinimumSalary] = useState(10000000)
+    const [minimumSalary, setMinimumSalary] = useState(1000000)
     const [maximumSalary, setMaximumSalary] = useState(0)
 
     const calculateSalaries = (filteredData) => {
@@ -36,10 +36,7 @@ function AverageSalary({ filteredData }) {
     }, [filteredData])
     return (
         <>
-            <GraphIndex graphData={[minimumSalary, averageSalary, maximumSalary]} />
-            <div>Average salary: {averageSalary ? '$' + Math.round(averageSalary) : 'unavailable'}</div>
-            <div>Minimum salary: {minimumSalary ? '$' + Math.round(minimumSalary) : 'unavailable'}</div>
-            <div>Maximum salary: {maximumSalary ? '$' + Math.round(maximumSalary) : 'unavailable'}</div>
+            <GraphIndex graphData={[minimumSalary, averageSalary, maximumSalary]} title={title} />
         </>
     )
 }

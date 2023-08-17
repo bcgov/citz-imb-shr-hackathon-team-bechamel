@@ -4,13 +4,13 @@ import { useState, useEffect } from "react";
 import AverageSalary from "../AverageSalary";
 
 const GraphIndex = (props) => {
-  const {graphData} = props;
+  const {graphData, title} = props;
   console.log(graphData)
   //Local state to manage submission error handling
   return (
     <div style={{display: "flex", flexDirection: "row", justifyContent: "center", height: "300px", padding: "2%"}}>
-    <OneCriteriaGraph graphData={graphData}/>
-    <TwoCriteriaGraph graphData={graphData}/>    
+    <OneCriteriaGraph graphData={graphData} title={title}/>
+    {/* <TwoCriteriaGraph graphData={graphData}/>     */}
     </div>
   );
 };
