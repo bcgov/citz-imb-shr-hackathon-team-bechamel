@@ -2,12 +2,15 @@ import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 
 
-const Graph = (props) => {
+const TwoCriteriaGraph = (props) => {
     const {graphData} = props;
+
+    console.log(graphData)
     const labels = ["Low", "Avg", "Max"];
     const data = {
     labels: labels,
     datasets: [{
+      label: "test",
       data: [60000, 70000, 100000],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -30,4 +33,4 @@ const Graph = (props) => {
     )
 }
 
-export default Graph;
+export default TwoCriteriaGraph;

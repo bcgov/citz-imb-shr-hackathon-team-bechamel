@@ -93,7 +93,7 @@ function Dashboard() {
     setAPIData();
   }, []);
 
-
+  console.log(data)
 
 
 
@@ -117,7 +117,7 @@ function Dashboard() {
           // checkboxSelection
           />
         </div>
-        <GraphIndex></GraphIndex>
+        <GraphIndex graphData={data}></GraphIndex>
         <Button href="/">Go Home</Button>
       </div>
     </>
