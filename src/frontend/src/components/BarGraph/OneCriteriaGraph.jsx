@@ -3,14 +3,14 @@ import { Bar } from "react-chartjs-2";
 
 
 const OneCriteriaGraph = (props) => {
-    const {graphData} = props;
+    const {graphData, title} = props;
 
     console.log(graphData)
     const labels = ["Low", "Avg", "Max"];
     const data = {
     labels: labels,
     datasets: [{
-      data: [60000, 70000, 100000],
+      data: graphData,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(255, 159, 64, 0.2)',
@@ -29,7 +29,7 @@ const OneCriteriaGraph = (props) => {
     plugins: {
         title: {
             display: true,
-            text: 'Classification Search Criteria',
+            text: title,
         },
         legend: {
           display: true,
