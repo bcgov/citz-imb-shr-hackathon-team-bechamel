@@ -5,7 +5,6 @@ import { DataGrid } from '@mui/x-data-grid';
 import TextField from '@mui/material/TextField';
 import Form from '../components/Form';
 import AverageSalary from '../components/AverageSalary';
-import GraphIndex from '../components/BarGraph/Index';
 
 
 function Dashboard() {
@@ -92,7 +91,7 @@ function Dashboard() {
     setAPIData();
   }, []);
 
-
+  console.log(data)
 
 
 
@@ -118,7 +117,6 @@ function Dashboard() {
           // checkboxSelection
           />
         </div>
-        <GraphIndex></GraphIndex>
         <Button href="/">Go Home</Button>
       </div>
     </>
