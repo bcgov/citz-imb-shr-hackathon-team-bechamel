@@ -5,6 +5,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Box from '@mui/material/Box';
 
 function Form() {
     const [app, setApp] = useState('');
@@ -19,6 +24,7 @@ function Form() {
       const handleBandChange = (event) => {
         setBand(event.target.value);
       };
+      
   return (
     <>
 <p>Fill out this form</p>
@@ -45,26 +51,7 @@ function Form() {
           <MenuItem value={4}>Permanent, Competitive Process</MenuItem>
         </Select>
       </FormControl>
-      <TextField id="standard-basic" label="Reccomended Salary" variant="standard" type="number" sx={{ m: 1, minWidth: 280 }}/>
-      <br/>
-      <FormControl variant="standard" sx={{ m: 1, minWidth: 280 }}>
-        <InputLabel id="demo-simple-select-standard-label">Recomended Increase</InputLabel>
-        <Select
-          value={increase}
-          onChange={handleIncChange}
-          label="Expirience"
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={5}>5%</MenuItem>
-          <MenuItem value={6}>6%</MenuItem>
-          <MenuItem value={7}>7%</MenuItem>
-          <MenuItem value={8}>8%</MenuItem>
-          <MenuItem value={7}>9%</MenuItem>
-          <MenuItem value={8}>10%</MenuItem>
-        </Select>
-      </FormControl>
+     
       <FormControl variant="standard" sx={{ m: 1, minWidth: 280 }}>
         <InputLabel id="demo-simple-select-standard-label">Classification</InputLabel>
         <Select
@@ -84,7 +71,30 @@ function Form() {
           <MenuItem value={7}>Band 7</MenuItem>
         </Select>
       </FormControl>
-      <h4>Education Level:</h4>
+      <h4>Education  and Expirience Level:</h4>
+      <Box display="flex" 
+        width={1250} 
+
+        alignItems="center"
+        justifyContent="center">
+      <List sx={{ width: '80%', maxWidth: 700, bgcolor: 'background.paper', justify:"center" }}>
+      <ListItem>
+      <FormControlLabel control={<Checkbox />} label="1: Minimal education and expirience related to area of work" />
+      </ListItem>
+      <ListItem>
+      <FormControlLabel control={<Checkbox />} label="2: Limited education and expirience related to area of work" />
+      </ListItem>
+      <ListItem>
+      <FormControlLabel control={<Checkbox />} label="3: multiple years of education and expirience related to area of work" />
+      </ListItem>
+      <ListItem>
+      <FormControlLabel control={<Checkbox />} label="4: Senior level education and expirience and high preformance related to work area" />
+      </ListItem>
+      </List>
+      </Box>
+      
+      <h4>Comments</h4>
+      <TextField id="outlined-basic" label="Additional Comments" variant="outlined" sx={{ m: 1, minWidth: 560, minHeight: 200 }} multiline rows={4}/>
 </form>
 <br/>
     </>
