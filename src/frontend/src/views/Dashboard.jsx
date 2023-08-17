@@ -5,6 +5,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import TextField from '@mui/material/TextField';
 import Form from '../components/Form';
 import AverageSalary from '../components/AverageSalary';
+import GraphIndex from '../components/BarGraph/Index';
 
 
 function Dashboard() {
@@ -98,8 +99,6 @@ function Dashboard() {
   return (
     <>
       <div>
-
-        <h1>Hello World</h1>
         <h2>SHR Dashboard</h2>
         <Form />
         <TextField id="outlined-basic" label="Search by position" variant="outlined" value={searchPosition} onChange={e => setSearchPosition(e.target.value)} />
@@ -118,9 +117,9 @@ function Dashboard() {
           // checkboxSelection
           />
         </div>
+        <GraphIndex></GraphIndex>
         <Button href="/">Go Home</Button>
       </div>
-
     </>
   )
 }
